@@ -15,15 +15,12 @@ import java.util.logging.Logger;
  */
 public class Administrador extends Persona {
 
-    //private Empleado e;
-    //private Cliente c;
-    //private Bono b;
-    //private Producto p;
+
 
     public Administrador() {
     }
 
-    public Administrador(String codigo, long id, String nombre, String apellidos, long celular) {
+    public Administrador(String codigo, String id, String nombre, String apellidos, String celular) {
         super(codigo, id, nombre, apellidos, celular); //Es obligatorio el metodo super para utilizar los atributos de la clase Persona
     }
 
@@ -51,13 +48,13 @@ public class Administrador extends Persona {
             linea = lector.readLine();
             this.codigo = linea.substring(8);
             linea = lector.readLine();
-            this.id = Long.parseLong(linea.substring(16));
+            this.id =linea.substring(16);
             linea = lector.readLine();
             this.nombre = linea.substring(8);
             linea = lector.readLine();
             this.apellidos = linea.substring(11);
             linea = lector.readLine();
-            this.celular = Long.parseLong(linea.substring(9));
+            this.celular =linea.substring(9);
             lector.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,7 +63,7 @@ public class Administrador extends Persona {
         }
     }
 
-    public void modificarDatos(File f, long celular) {
+    public void modificarDatos(File f, String celular) {
         PrintWriter linea;
         setCelular(celular);
         try {

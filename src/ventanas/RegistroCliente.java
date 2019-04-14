@@ -8,11 +8,8 @@ package ventanas;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import tienda.Cliente;
+import tienda.ManejoCliente;
 
 /**
  *
@@ -24,9 +21,7 @@ public class RegistroCliente extends javax.swing.JFrame {
      * Creates new form RegistroCliente
      */
     
-    private String barra = File.separator;
-    private String location1 = System.getProperty("user.dir") + this.barra + "Registros" + this.barra;
-    private String location2 = this.location1 + "Clientes" + this.barra;
+   
     
     public RegistroCliente() {
         initComponents();
@@ -151,43 +146,26 @@ public class RegistroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldDocumentoActionPerformed
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        String identificacion, nombre, apellidos, codigo;
-        long id, celular;
+        String identificacion = null, nombre, apellidos, codigo;
+        String celular;
         int puntos = 0;
+        ManejoCliente w = new ManejoCliente();
         if(this.jTextFieldNombre.getText().equals("") || this.jTextFieldApellidos.getText().equals("") || this.jTextFieldDocumento.getText().equals("") || this.jTextFieldCelular.getText().equals("")){
             JOptionPane.showMessageDialog(rootPane, "Por favor ingrese todos los datos", "Error - cuadros de texto vacios", 
                     JOptionPane.ERROR_MESSAGE);
-        } else {
+        } 
+        else 
             identificacion = this.jTextFieldDocumento.getText();
             nombre = this.jTextFieldNombre.getText();
             apellidos = this.jTextFieldApellidos.getText();
             codigo = identificacion;
-            id = Long.parseLong(identificacion);
-            celular = Long.parseLong(this.jTextFieldCelular.getText());
-            File cliente = new File(this.location2 + identificacion + ".Registro");
-            if(!cliente.exists()){
-                try {
-                    cliente.createNewFile();
-                } catch (IOException ex) {
-                    Logger.getLogger(RegistroCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                Cliente c = new Cliente(codigo, id, nombre, apellidos, celular, puntos);
-                c.guardarDatos(cliente);
-                JOptionPane.showMessageDialog(rootPane, "Cliente creado con exito", "Operacion satisfactoria", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                Cliente c = new Cliente();
-                c.consultarDatos(cliente);
-                id = c.getId();
-                nombre = c.getNombre();
-                apellidos = c.getApellidos();
-                celular = c.getCelular();
-                puntos = c.getPuntos();
-                JOptionPane.showMessageDialog(rootPane, "Identificacion: " + Long.toString(id) + "\nNombre: " + nombre + 
-                        "\nApellidos: " + apellidos + "\nCelular: " + Long.toString(celular) + "\nPuntos: " + 
-                                Integer.toString(puntos), "El cliente ya existe", JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
+           
+            celular = this.jTextFieldCelular.getText();
+            
+            
+            w.AgregarCliente(codigo, identificacion, nombre, apellidos, celular, puntos);
+              
+        
         dispose();
         Compra c = new Compra();
         c.setVisible(true);
@@ -208,37 +186,7 @@ public class RegistroCliente extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistroCliente().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRegistrar;

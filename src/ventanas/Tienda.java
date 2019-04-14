@@ -52,9 +52,13 @@ public class Tienda extends javax.swing.JFrame {
                 crearCarpetas.mkdirs();
             }
         }
-        long celular = 3152254018L;
+        String celular ="3215075569";
+        String clave = "1";
+        
+       
+        
         File admin = new File(this.location2 + "Admin.Registro");
-        Administrador adminis = new Administrador("1", 1L, "Hermes Antonio", "Teran Velez", celular);
+        Administrador adminis = new Administrador("1",clave, "Hermes Antonio", "Teran Velez", celular);
         if (!admin.exists()) {
             try {
                 admin.createNewFile();

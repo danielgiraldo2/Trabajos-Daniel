@@ -9,15 +9,15 @@ import java.io.File;
 public abstract class Persona {
 
     String codigo;
-    long id;
+    String id;
     String nombre;
     String apellidos;
-    long celular;
+    String celular;
     
     public Persona(){
     }
 
-    public Persona(String codigo, long id, String nombre, String apellidos, long celular) {
+    public Persona(String codigo, String id, String nombre, String apellidos, String celular) {
         this.codigo = codigo; //utiliza el metodo this para asignarle al atributo codigo el valor del parametro codigo
         this.id = id; //utiliza el metodo this para asignarle al atributo id el valor del parametro id
         this.nombre = nombre; //utiliza el metodo this para asignarle al atributo nombre el valor del parametro nombre
@@ -33,11 +33,11 @@ public abstract class Persona {
         return this.codigo; //metodo de consultar. Retorna el atributo
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id; //metodo de modificar. Recibe un parametro y lo asigna
     }
 
-    public long getId() {
+    public String getId() {
         return this.id; //metodo de consultar. Retorna el atributo
     }
 
@@ -57,11 +57,11 @@ public abstract class Persona {
         return this.apellidos; //metodo de consultar. Retorna el atributo
     }
 
-    public void setCelular(long celular) {
+    public void setCelular(String celular) {
         this.celular = celular; //metodo de modificar. Recibe un parametro y lo asigna
     }
 
-    public long getCelular() {
+    public String getCelular() {
         return this.celular; //metodo de consultar. Retorna el atributo
     }
 

@@ -20,7 +20,7 @@ public class Cliente extends Persona {
     public Cliente() {
     }
 
-    public Cliente(String codigo, long id, String nombre, String apellidos, long celular, int puntos) {
+    public Cliente(String codigo, String id, String nombre, String apellidos, String celular, int puntos) {
         super(codigo, id, nombre, apellidos, celular); //Es obligatorio el metodo super para utilizar los atributos de la clase Persona
         this.puntos = puntos;  //utiliza el metodo this para asignarle al atributo puntos el valor del parametro puntos
     }
@@ -57,13 +57,13 @@ public class Cliente extends Persona {
             linea = lector.readLine();
             this.codigo = linea.substring(8);
             linea = lector.readLine();
-            this.id = Long.parseLong(linea.substring(16));
+            this.id =linea.substring(16);
             linea = lector.readLine();
             this.nombre = linea.substring(8);
             linea = lector.readLine();
             this.apellidos = linea.substring(11);
             linea = lector.readLine();
-            this.celular = Long.parseLong(linea.substring(9));
+            this.celular =linea.substring(9);
             linea = lector.readLine();
             this.puntos = Integer.parseInt(linea.substring(19));
             lector.close();
@@ -74,7 +74,7 @@ public class Cliente extends Persona {
         }
     }
 
-    public void modificarDatos(File f, long celular, int puntos) {
+    public void modificarDatos(File f, String celular, int puntos) {
         PrintWriter linea;
         setCelular(celular);
         setPuntos(puntos);

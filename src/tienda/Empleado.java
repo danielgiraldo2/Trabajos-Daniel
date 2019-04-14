@@ -21,7 +21,7 @@ public class Empleado extends Persona {
     public Empleado() {
     }
 
-    public Empleado(String codigo, long id, String nombre, String apellidos, long celular, int numeroVentas, Boolean activo) {
+    public Empleado(String codigo, String id, String nombre, String apellidos, String celular, int numeroVentas, Boolean activo) {
         super(codigo, id, nombre, apellidos, celular); //Es obligatorio el metodo super para utilizar los atributos de la clase Persona
         this.numeroVentas = numeroVentas; //utiliza el metodo this para asignarle al atributo numeroVentas el valor del parametro numeroVentas
         this.activo = activo; //utiliza el metodo this para asignarle al atributo activo el valor del parametro activo
@@ -57,7 +57,8 @@ public class Empleado extends Persona {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+  
     @Override
     public void consultarDatos(File f) {
         RandomAccessFile lector;
@@ -67,13 +68,13 @@ public class Empleado extends Persona {
             linea = lector.readLine();
             this.codigo = linea.substring(8);
             linea = lector.readLine();
-            this.id = Long.parseLong(linea.substring(16));
+            this.id = linea.substring(16);
             linea = lector.readLine();
             this.nombre = linea.substring(8);
             linea = lector.readLine();
             this.apellidos = linea.substring(11);
             linea = lector.readLine();
-            this.celular = Long.parseLong(linea.substring(9));
+            this.celular = linea.substring(9);
             linea = lector.readLine();
             this.numeroVentas = Integer.parseInt(linea.substring(18));
             linea = lector.readLine();
@@ -86,7 +87,7 @@ public class Empleado extends Persona {
         }
     }
     
-    public void modificarDatos(File f, long celular, int numeroVentas, Boolean activo){
+    public void modificarDatos(File f, String celular, int numeroVentas, Boolean activo){
         PrintWriter linea;
         setCelular(celular);
         setNumeroVentas(numeroVentas);
